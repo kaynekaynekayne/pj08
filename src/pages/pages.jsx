@@ -1,11 +1,19 @@
 import React from 'react';
 import {Routes, Route} from 'react-router-dom';
+import Auth from '../components/auth';
+import NotFound from './notFound';
+import {useAuth} from '../context/authContext';
 import Home from './home';
 
 const Pages = () => {
+    const {user}=useAuth();
+
     return (
         <Routes>
-            <Route path="/" element={<Home />}/>
+            {user ? <Route path="/" element={<Home />} />
+            : <Route path="/" element={<Auth />}/>
+            }
+            <Route path="*" element={<NotFound />}/>
         </Routes>
     );
 };

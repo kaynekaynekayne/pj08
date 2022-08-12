@@ -1,14 +1,19 @@
 import {BrowserRouter as Router} from 'react-router-dom';
-import Header from './components/header';
+import Nav from './components/nav';
 import Pages from './pages/pages';
+import {AuthProvider} from './context/authContext';
+import './styles/main.scss';
+
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Header />
-        <Pages />
-      </Router>
+      <AuthProvider>
+        <Router>
+          <Nav />
+          <Pages />
+        </Router>
+      </AuthProvider>
     </div>
   );
 }
