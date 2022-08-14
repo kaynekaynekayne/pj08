@@ -4,6 +4,7 @@ import Pages from './pages/pages';
 import Footer from './components/footer';
 import {AuthProvider} from './context/authContext';
 import './styles/main.scss';
+import Search from './components/search';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <AuthProvider>
         <Router>
           <Header />
+          <Search />
           <Pages />
           <Footer />
         </Router>
