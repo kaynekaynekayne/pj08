@@ -20,32 +20,44 @@ const Home = () => {
                 stdate:new Date().toISOString().slice(0,10).replaceAll("-",""),
                 eddate:'20230404',
                 cpage:1,
-                rows:1,
+                rows:10,
                 prfstate:'02'
             }
         })
         const dataset=response.data;
         const items=parseStr(dataset,"prfnm").flat();
-        console.log(items)
-        
+        // console.log(items)
+        // name, attributes, children, value가
+        //0. 잡다하게 섞인 배열을 받음
+
+
+        //1. 배열에서 name:'value'만 남김
         const arr=[]
-        
-        const c=items.forEach((item) => { //for each item in original array
+        items.forEach((item) => { //for each item in original array
             const obj = {} //define an object structure
             obj[item.name] = item.value; //assign the desired key value pair
             arr.push(obj) //put your object in the array
         })
-        console.log(arr)
-        // setEvents(arr);
-        const newObj=arr.reduce((o,c)=>{
-            const key=Object.keys(c)[0];
-            return({
-                ...o,
-                [key]:c[key]
-            })
-        })
-        console.log(newObj)
-}
+        // console.log(arr)
+
+        //2.
+        const newArr=[];
+        for(let i=0; i<arr.length; i++){
+            if(i%9===0){
+                const result=arr.slice(i,i+9).reduce((prev,curr)=>{
+                    const key=Object.keys(curr)[0];
+                    return(
+                        {
+                            ...prev,
+                            [key]:curr[key]
+                        }
+                    )
+                })
+                newArr.push(result);
+            }
+        }
+        console.log(newArr)
+    }
 
     return (
         <div>  
