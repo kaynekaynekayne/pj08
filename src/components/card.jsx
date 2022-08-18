@@ -11,7 +11,7 @@ const Card = ({event}) => {
             <h4>{prfpdto}</h4>
             <h5>{fcltynm}</h5>
             {poster && 
-            <img src={poster} alt="poster"/>
+            <img src={poster} alt="poster" style={{width:'100px'}}/>
             }
         </div>
     );

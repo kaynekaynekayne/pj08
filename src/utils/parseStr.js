@@ -1,9 +1,8 @@
 import XMLParser from 'react-xml-parser';
 
-const parseStr=(dataset, variable)=>{
+const parseStr=(dataset)=>{
     const dataArr=new XMLParser().parseFromString(dataset).children;
-    const detailedArr=dataArr.map(data=>data.children)
-    return detailedArr
+    return dataArr.map(data=>data.children).flat()
 }
 
 export default parseStr;
