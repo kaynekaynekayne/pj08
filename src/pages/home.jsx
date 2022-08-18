@@ -17,34 +17,37 @@ const Home = () => {
     const getEvents=async()=>{
         const response=await eventApi.get(`/pblprfr?service=${process.env.REACT_APP_OPENDATA_KEY}`,{
             params:{
-                stdate:new Date().toISOString().slice(0,10).replaceAll("-",""),
+                stdate:'20220101',
                 eddate:'20230404',
                 cpage:1,
-                rows:10,
+                rows:3,
                 prfstate:'02'
             }
         })
+        console.log(response)
         const dataset=response.data;
         const items=parseStr(dataset,"prfnm").flat();
-        // console.log(items)
+        console.log(items)
         // name, attributes, children, value가
         //0. 잡다하게 섞인 배열을 받음
 
 
         //1. 배열에서 name:'value'만 남김
+        //불만족
         const arr=[]
         items.forEach((item) => { //for each item in original array
             const obj = {} //define an object structure
             obj[item.name] = item.value; //assign the desired key value pair
             arr.push(obj) //put your object in the array
         })
-        // console.log(arr)
+        console.log(arr)
 
-        //2.
+        //2. []
         const newArr=[];
+        const NUM_OF_OUTPUT=9; 
         for(let i=0; i<arr.length; i++){
-            if(i%9===0){
-                const result=arr.slice(i,i+9).reduce((prev,curr)=>{
+            if(i%NUM_OF_OUTPUT===0){
+                const result=arr.slice(i,i+NUM_OF_OUTPUT).reduce((prev,curr)=>{
                     const key=Object.keys(curr)[0];
                     return(
                         {
