@@ -12,12 +12,15 @@ const Home = () => {
     console.log(events);
 
     useEffect(()=>{
-        kopis
-        .mainEvents()
-        .then(dataset=>parseStr(dataset))
-        .then(data=>formatData(data))
-        .then(items=>setEvents(items))
-    },[kopis])
+        getEvents();
+    },[kopis]);
+
+    const getEvents=async()=>{
+        const response=await kopis.mainEvents();
+        const data=await parseStr(response);
+        const items=formatData(data);
+        setEvents(items);
+    }
 
     return (
         <div>  
