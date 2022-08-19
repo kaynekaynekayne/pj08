@@ -9,7 +9,7 @@ import formatData from '../utils/formatData';
 const Home = () => {
 
     const [events, setEvents]=useState([]);
-
+    
     useEffect(()=>{
         getEvents();
     },[kopis]);
@@ -22,10 +22,12 @@ const Home = () => {
     }
 
     return (
-        <div>  
-            {events.map((event)=>
-                <Card key={event.mt20id} event={event}/>
-            )}
+        <div> 
+            {events.length===0 ? <h2>Loading...</h2> :
+                events.map((event)=>
+                    <Card key={event.mt20id} event={event}/>
+                )
+            }
         </div>
     );
 };

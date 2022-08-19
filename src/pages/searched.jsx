@@ -22,6 +22,7 @@ const Searched = () => {
 
     return (
         <div>
+            {/* {items.length===0 ? <h2></h2>} */}
             {searchedEvent.map((event)=>
                 <div key={event.mt20id}>
                     <h3>{event.prfnm}</h3>

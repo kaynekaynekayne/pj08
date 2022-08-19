@@ -8,7 +8,7 @@ const InfoEvent = () => {
     let params=useParams();
     let {id}=params;
     const [details, setDetails]=useState({});
-
+    
     const getInfo=async()=>{
         const response=await kopis.detail(id);
         const data=await xmlConverter(response);

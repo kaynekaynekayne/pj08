@@ -1,13 +1,11 @@
 import React from 'react';
 
 const formatDetailData = (data) => {
-
-    const newObj=new Object();
+    const obj={};
     for(let i=0; i<data.length; i++){
-        newObj[data[i].name]=data[i].value
+        obj[data[i].name]=data[i].value
     }
-    // console.log(newObj);
-    return newObj;
+    return obj;
 };
 
 export default formatDetailData;
