@@ -22,6 +22,20 @@ class Kopis{
         });
         return response.data;
     }
+
+    async search(query){
+        const response=await this.kopis.get('pblprfr',{
+            params:{
+                service:this.key,
+                stdate:'20130101',
+                eddate:'20230404',
+                cpage:1,
+                rows:5,
+                shprfnm:query,
+            }
+        });
+        return response.data;
+    }
 }
 export const kopis=new Kopis();
 export default Kopis;

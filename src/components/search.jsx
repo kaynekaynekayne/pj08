@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 
 const Search = () => {
+    const navigate=useNavigate();
 
     const [term, setTerm]=useState("");
     const submitHandler=(e)=>{
         e.preventDefault();
-        console.log(term);
+        navigate("/searched/"+term);
         setTerm("");
     }
 

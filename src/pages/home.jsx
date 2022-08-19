@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import Card from '../components/card';
 //
-import { kopis } from '../services/Kopis';
-import parseStr from '../utils/parseStr';
+import { kopis } from '../services/kopis';
+import xmlConverter from '../utils/xmlConverter';
 import formatData from '../utils/formatData';
 
 const Home = () => {
@@ -17,7 +17,7 @@ const Home = () => {
 
     const getEvents=async()=>{
         const response=await kopis.mainEvents();
-        const data=await parseStr(response);
+        const data=await xmlConverter(response);
         const items=formatData(data);
         setEvents(items);
     }

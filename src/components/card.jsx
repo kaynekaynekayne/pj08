@@ -1,18 +1,20 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const Card = ({event}) => {
     
-    const {prfnm,prfpdfrom,prfpdto,fcltynm,poster}=event;
+    const {prfnm,prfpdfrom,prfpdto,fcltynm,poster,mt20id}=event;
 
     return (
         <div>
             <h3>{prfnm}</h3>
-            <h4>{prfpdfrom}</h4>
-            <h4>{prfpdto}</h4>
-            <h5>{fcltynm}</h5>
-            {poster && 
-            <img src={poster} alt="poster" style={{width:'100px'}}/>
+            {poster &&
+                <Link to={`/info/${mt20id}`}>
+                    <img src={poster} alt="poster" style={{width:'100px'}}/>
+                </Link>
             }
+            <h4>{prfpdfrom}~{prfpdto}</h4>
+            <h5>{fcltynm}</h5>
         </div>
     );
 };

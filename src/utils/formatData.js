@@ -4,7 +4,7 @@ import React from 'react';
 const formatData = (items) => {
 //1. 배열에서 name:'value'만 남김
     //불만족
-    const arr=[]
+    let arr=[];
     items.forEach((item) => { //for each item in original array
         const obj = {} //define an object structure
         obj[item.name] = item.value; //assign the desired key value pair
@@ -12,7 +12,7 @@ const formatData = (items) => {
     })
 
     //2. []
-    const newArr=[];
+    let newArr=[];
     const NUM_OF_OUTPUT=9; 
     for(let i=0; i<arr.length; i++){
         if(i%NUM_OF_OUTPUT===0){
