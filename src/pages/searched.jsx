@@ -1,5 +1,6 @@
 import React,{useEffect, useState} from 'react';
 import {Link, useParams} from 'react-router-dom';
+import searchingCard from '../components/searchingCard';
 import {kopis} from '../services/kopis';
 import formatData from '../utils/formatData';
 import xmlConverter from '../utils/xmlConverter';
@@ -24,16 +25,7 @@ const Searched = () => {
         <div>
             {/* {items.length===0 ? <h2></h2>} */}
             {searchedEvent.map((event)=>
-                <div key={event.mt20id}>
-                    <h3>{event.prfnm}</h3>
-                    <Link to={`/info/${event.mt20id}`}>
-                        <img src={event.poster} style={{width:"100px"}}/>
-                    </Link>
-                    <h4>{event.prfpdfrom}~{event.prfpdto}</h4>
-                    <h4>{event.fcltynm}</h4>
-                    <h5>{event.prfstate}</h5>
-                    <br/>
-                </div>    
+                <searchingCard key={event.mt20id} event={event}/>                   
             )}
         </div>
     );
