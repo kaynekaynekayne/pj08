@@ -9,7 +9,6 @@ import formatData from '../utils/formatData';
 const Home = () => {
 
     const [events, setEvents]=useState([]);
-    console.log(events);
 
     useEffect(()=>{
         getEvents();

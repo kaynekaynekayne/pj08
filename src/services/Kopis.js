@@ -36,6 +36,16 @@ class Kopis{
         });
         return response.data;
     }
+
+    async detail(id){
+        const response=await this.kopis.get(`pblprfr/${id}`,{
+            params:{
+                service:this.key,
+            }
+        })
+        return response.data;
+    };
+
 }
 export const kopis=new Kopis();
 export default Kopis;
