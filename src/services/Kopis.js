@@ -6,14 +6,16 @@ class Kopis{
             baseURL:"/openApi/restful/"
         })
         this.key=process.env.REACT_APP_OPENDATA_KEY
+        this.year=new Date().getFullYear(); 
+        this.date=new Date().toISOString().slice(5,10).replaceAll("-","");
     }
-
+    
     async mainEvents(){
         const response=await this.kopis.get('pblprfr',{
             params:{
                 service:this.key,
-                stdate:'20220101',
-                eddate:'20230404',
+                stdate:this.year-1+this.date,
+                eddate:this.year+1+this.date,
                 cpage:1,
                 rows:5,
                 prfstate:'02',
@@ -27,13 +29,15 @@ class Kopis{
         const response=await this.kopis.get('pblprfr',{
             params:{
                 service:this.key,
-                stdate:'20130101',
-                eddate:'20230404',
+                stdate:this.year-5+this.date,
+                eddate:this.year+2+this.date,
                 cpage:1,
-                rows:5,
+                rows:10,
                 shprfnm:query,
             }
         });
+        console.log(response)
+        
         return response.data;
     }
 

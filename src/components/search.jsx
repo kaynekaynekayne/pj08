@@ -18,6 +18,7 @@ const Search = () => {
                 value={term}
                 placeholder="공연을 검색하세요"
                 onChange={(e)=>setTerm(e.target.value)}
+                minLength='2'
             />
         </form>
     );

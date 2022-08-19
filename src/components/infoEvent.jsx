@@ -7,14 +7,12 @@ import formatDetailData from '../utils/formatDetailData';
 const InfoEvent = () => {
     let params=useParams();
     let {id}=params;
-
     const [details, setDetails]=useState({});
-    
+
     const getInfo=async()=>{
         const response=await kopis.detail(id);
         const data=await xmlConverter(response);
         const items=formatDetailData(data);
-        console.log(items);
         setDetails(items);
     }
 
@@ -24,16 +22,21 @@ const InfoEvent = () => {
 
     return (
         <div>
-            <img src={details.poster} style={{width:'300px'}} />
-            <h3>{details.prfnm}</h3>
-            <h3>{details.fcltynm}</h3>
-            <div className="meta">
-                <p>{details.prfpdfrom}-{details.prfpdto}</p>
-                <p>{details.prfstate}</p>
-                <p>{details.prfcast}</p>
-                <p>공연시간: {details.prfruntime}</p>
-                <p>{details.pcseguidance}</p>
-            </div>
+            {Object.keys(details).length===0 ? 
+                <h2>Loading...</h2>:
+            <>
+                <img src={details.poster} style={{width:'300px'}} />
+                <h3>{details.prfnm}</h3>
+                <h4>{details.fcltynm}</h4>
+                <div className="meta">
+                    <p>{details.genrenm}</p>
+                    <p>{`${details.prfpdfrom}-${details.prfpdto} (${details.prfstate})`}</p>
+                    <p>{details.prfcast}</p>
+                    <p>{details.pcseguidance}</p>
+                    <p>공연시간: {details.prfruntime}</p>
+                </div>
+            </>
+            }
         </div>
     );
 };

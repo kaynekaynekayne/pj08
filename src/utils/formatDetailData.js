@@ -6,7 +6,7 @@ const formatDetailData = (data) => {
     for(let i=0; i<data.length; i++){
         newObj[data[i].name]=data[i].value
     }
-    console.log(newObj);
+    // console.log(newObj);
     return newObj;
 };
 

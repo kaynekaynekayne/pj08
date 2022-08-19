@@ -10,7 +10,6 @@ const formatData = (items) => {
         obj[item.name] = item.value; //assign the desired key value pair
         arr.push(obj) //put your object in the array
     })
-    console.log(items);
 
     //2. []
     let newArr=[];
