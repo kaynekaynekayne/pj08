@@ -11,10 +11,14 @@ const Searched = () => {
     let {keyword}=params;
 
     const getSearchingLists=async()=>{
-        const response=await kopis.search(keyword);
-        const data=await xmlConverter(response);
-        const items=formatData(data);
-        setSearchedEvent(items);
+        try{
+            const response=await kopis.search(keyword);
+            const data=await xmlConverter(response);
+            const items=formatData(data);
+            setSearchedEvent(items);
+        }catch(err){
+            alert(err.message);
+        }
     }
     
     useEffect(()=>{

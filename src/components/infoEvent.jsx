@@ -11,10 +11,14 @@ const InfoEvent = () => {
     const [details, setDetails]=useState({});
     
     const getInfo=async()=>{
-        const response=await kopis.detail(id);
-        const data=await xmlConverter(response);
-        const items=formatDetailData(data);
-        setDetails(items);
+        try{
+            const response=await kopis.detail(id);
+            const data=await xmlConverter(response);
+            const items=formatDetailData(data);
+            setDetails(items);
+        }catch(err){
+            alert(err.message);
+        }
     }
 
     useEffect(()=>{
