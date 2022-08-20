@@ -8,14 +8,6 @@ const formatData = (items) => {
         return obj; 
     })
     
-    // let arr=[];
-    // items.forEach((item) => { //for each item in original array
-    //     const obj = {} //define an object structure
-    //     obj[item.name] = item.value; //assign the desired key value pair
-    //     arr.push(obj) //put your object in the array
-    // })
-
-    
     //2. []
     let newArr=[];
     const NUM_OF_OUTPUT=9; 

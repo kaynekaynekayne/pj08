@@ -6,9 +6,6 @@ module.exports = function(app) {
     createProxyMiddleware({
         target: 'http://www.kopis.or.kr',
         changeOrigin: true,
-        // pathRewrite: {
-        //     '^/kopis': '',
-        // },
     })
     )
 }

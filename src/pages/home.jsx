@@ -12,7 +12,7 @@ const Home = () => {
     
     useEffect(()=>{
         getEvents();
-    },[kopis]);
+    },[events]);
 
     const getEvents=async()=>{
         const response=await kopis.mainEvents();

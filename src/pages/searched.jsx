@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react';
-import {Link, useParams} from 'react-router-dom';
-import searchingCard from '../components/searchingCard';
+import {useParams} from 'react-router-dom';
+import Card from '../components/card';
 import {kopis} from '../services/kopis';
 import formatData from '../utils/formatData';
 import xmlConverter from '../utils/xmlConverter';
@@ -23,9 +23,8 @@ const Searched = () => {
 
     return (
         <div>
-            {/* {items.length===0 ? <h2></h2>} */}
             {searchedEvent.map((event)=>
-                <searchingCard key={event.mt20id} event={event}/>                   
+                <Card key={event.mt20id} event={event}/>                   
             )}
         </div>
     );

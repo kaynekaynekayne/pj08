@@ -29,10 +29,10 @@ class Kopis{
         const response=await this.kopis.get('pblprfr',{
             params:{
                 service:this.key,
-                stdate:this.year-5+this.date,
+                stdate:this.year-10+this.date,
                 eddate:this.year+2+this.date,
                 cpage:1,
-                rows:10,
+                rows:15,
                 shprfnm:query,
             }
         });
