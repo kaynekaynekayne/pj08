@@ -41,7 +41,7 @@ class Kopis{
         return response.data;
     }
 
-    async detail(id){
+    async eventDetail(id){
         const response=await this.kopis.get(`pblprfr/${id}`,{
             params:{
                 service:this.key,
@@ -49,6 +49,15 @@ class Kopis{
         })
         return response.data;
     };
+
+    async placeDetail(code){
+        const response=await this.kopis.get(`prfplc/${code}`,{
+            params:{
+                service:this.key,
+            }
+        })
+        return response.data;
+    }
 
 }
 export const kopis=new Kopis();

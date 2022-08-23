@@ -9,7 +9,7 @@ const Searched = () => {
     const [searchedEvent, setSearchedEvent]=useState([]);
     let params=useParams();
     let {keyword}=params;
-
+    
     const getSearchingLists=async()=>{
         try{
             const response=await kopis.search(keyword);
@@ -17,7 +17,7 @@ const Searched = () => {
             const items=formatData(data);
             setSearchedEvent(items);
         }catch(err){
-            alert(err.message);
+            console.log(err.message);
         }
     }
     

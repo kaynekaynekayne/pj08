@@ -1,29 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import {useParams} from 'react-router-dom';
-import {kopis} from '../services/kopis';
-import xmlConverter from '../utils/xmlConverter';
-import formatDetailData from '../utils/formatDetailData';
 
-const InfoEvent = () => {
-    //얘네를 다 위로(info) 올려버리는 방법도 잇음 (map이랑 데이터 공유 때문에)
-    let params=useParams();
-    let {id}=params;
-    const [details, setDetails]=useState({});
-    
-    const getInfo=async()=>{
-        try{
-            const response=await kopis.detail(id);
-            const data=await xmlConverter(response);
-            const items=formatDetailData(data);
-            setDetails(items);
-        }catch(err){
-            alert(err.message);
-        }
-    }
-
-    useEffect(()=>{
-        getInfo();
-    },[]);
+const InfoEvent = ({details}) => {
 
     return (
         <div>

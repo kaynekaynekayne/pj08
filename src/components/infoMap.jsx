@@ -1,6 +1,7 @@
 import React from 'react';
 
-const InfoMap = () => {
+const InfoMap = ({location}) => {
+    console.log(location)
     return (
         <div>
             

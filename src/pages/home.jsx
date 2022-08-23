@@ -8,10 +8,10 @@ import formatData from '../utils/formatData';
 const Home = () => {
 
     const [events, setEvents]=useState([]);
-    
+
     useEffect(()=>{
         getEvents();
-    },[events]);
+    },[]);
 
     const getEvents=async()=>{
         try{
@@ -20,7 +20,7 @@ const Home = () => {
             const items=formatData(data);
             setEvents(items);
         }catch(err){
-            alert(err.message);
+            console.log(err.message);
         }
     }
 
