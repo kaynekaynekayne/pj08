@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     GoogleMap, 
     useJsApiLoader, 
@@ -21,20 +21,76 @@ const InfoMap = ({location}) => {
         googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAP_KEY,
         libraries,
     })
+    
+    const [map, setMap]=useState(/** @type google.maps.Map */(null));
+    const [origin,setOrigin]=useState("");
+    console.log(place);
+    const [destination, setDestination]=useState("");
+
+    const [directionsResponse, setDirectionsResponse]=useState(null);
+    const [distance, setDistance]=useState("");
+    const [duration, setDuration]=useState("");
+
+    const onToggleClick=()=>{
+        setOrigin(destination);
+        setDestination(origin);
+    };
+
+    const getRoute=async()=>{
+        if(origin==="" || destination===""){
+            return;
+        }
+
+        try{
+            const directionService=new window.google.maps.DirectionsService();
+            const results=await directionService.route({
+                origin,
+                destination,
+                travelMode:window.google.maps.TravelMode.TRANSIT,
+            })
+            setDirectionsResponse(results);
+            setDistance(results.routes[0].legs[0].distance.text);
+            setDuration(results.routes[0].legs[0].duration.text);
+        }catch(err){
+            console.log(err.message);
+        }
+    }
+
+    const clearRoute=()=>{
+        setDirectionsResponse(null);
+        setDistance("");
+        setDuration("");
+        setOrigin("");
+        setDestination("");
+    }
 
     return isLoaded ? (
-        <section style={{flexBasis:'50%', backgroundColor:'tomato'}}>
+        <section style={{flexBasis:'50%', backgroundColor:'mintcream'}}>
             <div>
-                <input />
-                <input />
-                <button>Reverse</button>
-                <button>Go</button>
-                <button>X</button>
+                <Autocomplete>
+                    <input 
+                        placeholder="Starting point"
+                        type="text"
+                        onChange={(e)=>setOrigin(e.target.value)}
+                        value={origin}
+                    />
+                </Autocomplete>
+                <Autocomplete>
+                    <input 
+                        placeholder="Destination"
+                        type="text"
+                        onChange={(e)=>setDestination(e.target.value)}
+                        value={destination}
+                    />
+                </Autocomplete>
+                <button onClick={onToggleClick}>Reverse</button>
+                <button onClick={getRoute} type="submit">Go</button>
+                <button onClick={clearRoute}>X</button>
                 <div>
-                    <p>distance</p>
-                    <p>duration</p>
+                    <p>distance {distance}</p>
+                    <p>duration {duration}</p>
                 </div>
-                <button>back to center</button>
+                <button onClick={()=>map.panTo({lat,lng})}>back to center</button>
             </div>
 
             <GoogleMap
@@ -46,9 +102,11 @@ const InfoMap = ({location}) => {
                     streetViewControl:false,
                     gestureHandling:'greedy'
                 }}
-                // onLoad={}
+                onLoad={(map)=>setMap(map)}
+                
             >
                 <Marker position={{lat,lng}}/>
+                {directionsResponse && <DirectionsRenderer directions={directionsResponse}/>}
             </GoogleMap>
         </section>
     ):<div>Loading...</div>
