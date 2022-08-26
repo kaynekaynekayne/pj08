@@ -2,7 +2,7 @@
 const InfoEvent = ({details}) => {
 
     return (
-        <div>
+        <section style={{flexBasis:'50%', backgroundColor:'beige'}}>
             {Object.keys(details).length===0 ? 
                 <h2>Loading...</h2>:
             <>
@@ -18,7 +18,7 @@ const InfoEvent = ({details}) => {
                 </div>
             </>
             }
-        </div>
+        </section>
     );
 };
 

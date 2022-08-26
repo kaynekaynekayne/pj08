@@ -32,12 +32,12 @@ export const AuthProvider=({children})=>{
     }
 
     useEffect(()=>{
-        const stopStateChanged=onAuthStateChanged(auth, (currentUser)=>{
+        const unsubscribe=onAuthStateChanged(auth, (currentUser)=>{
             setUser(currentUser);
         });
     
         return ()=>{
-            stopStateChanged();
+            unsubscribe();
         }
     },[]);
 
