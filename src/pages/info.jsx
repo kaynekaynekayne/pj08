@@ -10,7 +10,9 @@ import InfoMap from '../components/infoMap';
 const Info = () => {
     let params=useParams();
     let {id}=params;
+    
     const [details, setDetails]=useState({});
+
     const [placeCode,setPlaceCode]=useState("");
     const [location,setLocation]=useState({lat:null, lng:null, place:null});
 
@@ -20,6 +22,7 @@ const Info = () => {
             const data=await xmlConverter(response);
             const items=formatDetailData(data);
             setDetails(items);
+            console.log(details);
             setPlaceCode(items.mt10id);
         }catch(err){
             console.log(err.message);
@@ -31,23 +34,27 @@ const Info = () => {
             const response=await kopis.placeDetail(placeCode);
             const data=await xmlConverter(response);
             const items=formatDetailData(data);
-            setLocation({lat:parseFloat(items.la),lng:parseFloat(items.lo),place:items.fcltynm})
+            // console.log(items);
+            setLocation({lat:parseFloat(items.la),lng:parseFloat(items.lo),place:items.adres})
         }catch(err){
             console.log(err.message);
         }
     }
 
     useEffect(()=>{
-        getDetails();
+        getDetails()
+        .then()
         console.log("i'm detaisl")
     },[id]);
 
     //useEffect 하나 더 만들기? 경도 위도 구할 수 있는걸로(kopis.placedetail)
-
     useEffect(()=>{
         getPlaces();
+        console.log(placeCode);
+        console.log(location);
         console.log("i'm get places")
     },[placeCode]);
+
 
     return (
         <section>

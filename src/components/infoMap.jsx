@@ -25,7 +25,8 @@ const InfoMap = ({location}) => {
     const [map, setMap]=useState(/** @type google.maps.Map */(null));
     const [origin,setOrigin]=useState("");
     console.log(place);
-    const [destination, setDestination]=useState("");
+    const [destination, setDestination]=useState(place || "");
+    //place가 오면 에러 -> mount 됐을 때 27에서 null 뜸
 
     const [directionsResponse, setDirectionsResponse]=useState(null);
     const [distance, setDistance]=useState("");
@@ -65,8 +66,8 @@ const InfoMap = ({location}) => {
     }
 
     return isLoaded ? (
-        <section style={{flexBasis:'50%', backgroundColor:'mintcream'}}>
-            <div>
+        <section style={{position:'relative',flexBasis:'50%', backgroundColor:'mintcream'}}>
+            <div style={{position:'absolute', top:'1rem', left:'1rem',zIndex:'1'}}>
                 <Autocomplete>
                     <input 
                         placeholder="Starting point"
