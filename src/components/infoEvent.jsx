@@ -1,6 +1,6 @@
 
 const InfoEvent = ({details}) => {
-
+    console.log(details, "event");
     return (
         <section style={{flexBasis:'50%', backgroundColor:'beige'}}>
             {Object.keys(details).length===0 ? 
