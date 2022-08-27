@@ -14,9 +14,8 @@ const containerStyle = {
 const libraries=['places'];
 
 const InfoMap = ({location}) => {
-    const {lat, lng, place}=location;
+    const {lat, lng, address}=location;
     console.log(location, "infomap");
-    if(isNaN(lat)||isNaN(lng)){console.log("nan")}
 
     const {isLoaded}=useJsApiLoader({
         id:'google-map-script',
@@ -26,8 +25,7 @@ const InfoMap = ({location}) => {
     
     const [map, setMap]=useState(/** @type google.maps.Map */(null));
     const [origin,setOrigin]=useState("");
-    const [destination, setDestination]=useState(place || "");
-    //place가 오면 에러 -> mount 됐을 때 27에서 null 뜸
+    const [destination, setDestination]=useState(address || "");
 
     const [directionsResponse, setDirectionsResponse]=useState(null);
     const [distance, setDistance]=useState("");
@@ -66,7 +64,7 @@ const InfoMap = ({location}) => {
         setDestination("");
     }
 
-    return isLoaded || (isNaN(lat)) ? (
+    return isLoaded ? (
         <section style={{position:'relative',flexBasis:'50%', backgroundColor:'mintcream'}}>
             <div style={{position:'absolute', top:'1rem', left:'1rem',zIndex:'1'}}>
                 <Autocomplete>
